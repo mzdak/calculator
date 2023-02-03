@@ -28,8 +28,16 @@ operatorButtons.forEach(button => {
             opOne = operand.join('');
             operand = [];
             operator = button.textContent;
-        } else{
-            solve();
+        } 
+        else if(operator != '' && operand.length === 0){
+            operator = button.textContent;
+        }
+         else{
+            // solve();
+
+            opTwo = operand.join('');
+            operand =[],
+            result = operate(operator, Number(opOne), Number(opTwo))
             operator = button.textContent;
             displayText.textContent = `${result}${operator}`;
             opOne = result;
@@ -39,7 +47,11 @@ operatorButtons.forEach(button => {
 })
 
 equals.addEventListener('click', () => {
-    solve();
+
+    opTwo = operand.join('');
+    operand =[],
+    result = operate(operator, Number(opOne), Number(opTwo))
+    // solve();
     displayText.textContent = result;
     opOne = result;
     opTwo = 0;
