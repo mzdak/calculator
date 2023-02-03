@@ -33,11 +33,7 @@ operatorButtons.forEach(button => {
             operator = button.textContent;
         }
          else{
-            // solve();
-
-            opTwo = operand.join('');
-            operand =[],
-            result = operate(operator, Number(opOne), Number(opTwo))
+            solve();
             operator = button.textContent;
             displayText.textContent = `${result}${operator}`;
             opOne = result;
@@ -47,11 +43,7 @@ operatorButtons.forEach(button => {
 })
 
 equals.addEventListener('click', () => {
-
-    opTwo = operand.join('');
-    operand =[],
-    result = operate(operator, Number(opOne), Number(opTwo))
-    // solve();
+    solve();
     displayText.textContent = result;
     opOne = result;
     opTwo = 0;
