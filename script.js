@@ -9,11 +9,23 @@ let operand = []
 let opOne = 0;
 let opTwo = 0;
 let operator = '';
+let result = 0;
+let checkNewInput = 0; //Checks if number was pressed again after solving. 0 is new input, 1 is not.
 
 numButtons.forEach(button => {
     button.addEventListener('click',() => {
         if(displayText.textContent === '0') displayText.textContent = '';
         if(operand.includes('.') && button.textContent === '.') void(0);
+        if(operator!="" && checkNewInput===0){
+            displayText.textContent = '';
+            opOne = 0;
+            opTwo = 0;
+            operator = '';
+            result = 0;
+            checkNewInput = 0;
+            displayText.textContent += button.textContent;
+            operand.push(button.textContent);
+        }
         else {
             displayText.textContent += button.textContent;
             operand.push(button.textContent);
@@ -28,9 +40,11 @@ operatorButtons.forEach(button => {
             opOne = operand.join('');
             operand = [];
             operator = button.textContent;
+            checkNewInput++;  
         } 
         else if(operator != '' && operand.length === 0){
             operator = button.textContent;
+            checkNewInput++;
         }
          else{
             solve();
@@ -47,6 +61,7 @@ equals.addEventListener('click', () => {
     displayText.textContent = result;
     opOne = result;
     opTwo = 0;
+    checkNewInput = 0;
 })
 
 clear.addEventListener('click', () => location.reload())
